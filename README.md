@@ -56,7 +56,7 @@ alx-project-nexus/
 
 1. **Clone the repository**
 ```bash
-git clone git@github.com:LinusBwana/alx-project-nexus.git
+git clone git@github.com:mahianyuallan/alx-project-nexus.git
 cd alx-project-nexus
 ```
 
@@ -814,11 +814,11 @@ Interactive API documentation is available at:
 
 ## Author
 
-Linus Bwana - [@LinusBwana](https://github.com/LinusBwana)
+Allan Mwenja Mahianyu - [@mahianyuallan](https://github.com/mahianyuallan)
 
 ## Support
 
-For support, open an issue in the GitHub repository: https://github.com/LinusBwana/alx-project-nexus/issues
+For support, open an issue in the GitHub repository: https://github.com/mahianyuallan/alx-project-nexus/issues
 
 ---
 
