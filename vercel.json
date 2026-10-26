@@ -1,12 +1,12 @@
 {
   "version": 2,
   "builds": [
-    { "src": "manage.py", "use": "@vercel/python" }
+    { "src": "job_board_backend/wsgi.py", "use": "@vercel/python" }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "manage.py"
+      "dest": "job_board_backend/wsgi.py"
     }
   ]
 }
