@@ -1,22 +1,33 @@
-# ALX Project Nexus - Job Board API
+# Project Nexus: Job Board API
 
-## Project Overview
+A REST API for a job board, built with Django and Django REST Framework. It covers the whole application lifecycle for three roles: admins manage industries, employers create locations, companies and job posts and review applicants, and job seekers browse open roles, apply with a resume and cover letter, and track their application status.
 
-ALX Project Nexus is a comprehensive job board platform built with Django and Django REST Framework. The platform connects job seekers with employers through a robust API that handles the complete job application lifecycle. The system features three distinct user roles (Admin, Employer, and Job Seeker), each with specific permissions and capabilities.
+Built as the capstone of the ALX ProDev Backend programme.
 
-The platform enables employers to create company profiles, manage multiple job locations, and post job openings across various industries. Job seekers can browse available positions, submit applications with resumes and cover letters, and track their application status in real-time. Employers can review applications, update candidate status, and manage their hiring pipeline efficiently.
+## Design highlights
 
-Built with security and scalability in mind, the API uses JWT token authentication, implements role-based access control, and follows RESTful design principles. The modular architecture is organized into three main applications: Accounts (user management), Jobs (job posting and company management), and Applications (application tracking and review).
+- **Role-based and object-level permissions.** Custom DRF permission classes enforce who can act at all (role) and on which records (ownership). An employer sees and edits only their own locations, companies, jobs and the applications made to their jobs; a job seeker sees only their own applications.
+- **Business rules as preconditions.** An employer must create a location before a company and own a company before posting a job. Applications are accepted only for active jobs before their deadline.
+- **JWT authentication** with access and refresh tokens (Simple JWT).
+- **Rate limiting.** Global DRF throttles plus stricter per-endpoint limits on login and registration (5 a minute) with clear error messages.
+- **Self-documenting API.** Swagger UI and ReDoc generated with drf-yasg.
+- **Deployable as is.** Dockerfile, Procfile (gunicorn), WhiteNoise for static files and `DATABASE_URL` configuration for PostgreSQL.
 
 ## Technology Stack
 
-- **Backend Framework**: Django 4.x
+- **Backend Framework**: Django 5.2
 - **API Framework**: Django REST Framework
 - **Authentication**: JWT (djangorestframework-simplejwt)
 - **API Documentation**: drf-yasg (Swagger/OpenAPI)
-- **Database**: PostgreSQL/MySQL (configurable, SQLite for development)
-- **File Storage**: Django File Storage
-- **Filtering**: django-filter
+- **Database**: PostgreSQL via `DATABASE_URL` (dj-database-url, psycopg2), SQLite for local development
+- **File Storage**: Django file storage for resumes and company logos
+- **Filtering and search**: django-filter and DRF search
+- **Serving**: gunicorn and WhiteNoise, Docker
+
+## Known gaps
+
+- No automated tests yet; each app's `tests.py` is still the Django stub.
+- The `notifications` app is a placeholder with no models.
 
 ## Project Structure
 
@@ -27,7 +38,7 @@ alx-project-nexus/
 │   ├── serializers.py    # Authentication serializers
 │   ├── views.py          # Register and Login viewsets
 │   ├── urls.py           # Authentication routes
-│   └── permissions.py    # Custom permissions
+│   └── throttles.py      # Login and register rate limits
 ├── applications/         # Job application management
 │   ├── models.py         # ApplyJob model
 │   ├── serializers.py    # Application serializers
@@ -814,7 +825,11 @@ Interactive API documentation is available at:
 
 ## Author
 
-Allan Mwenja Mahianyu - [@mahianyuallan](https://github.com/mahianyuallan)
+Built by [Allan Mwenja Mahianyu](https://www.allanmwenja.com/), software engineer working on backend, payment and AI systems. More of my work is on [GitHub](https://github.com/mahianyuallan).
+
+## License
+
+[MIT](LICENSE)
 
 ## Support
 
